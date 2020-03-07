@@ -2,8 +2,8 @@
 import os, csv
 
 #file path
-pypollpath = os.path.dirname(os.path.abspath(__file__))
-pypoll_data_path = os.path.join(pypollpath, 'election_data.csv')
+dir_path = os.path.dirname(os.path.realpath(__file__))
+pypoll_data_path = os.path.join(dir_path, 'election_data.csv')
 
 #make dictionarys & lists
 votes = {}
@@ -27,7 +27,8 @@ with open(pypoll_data_path, 'r') as pypoll_data:
             votes[rows[2]] += 1
             total_votes +=1
 
-with open('SPR_election_results.txt','w') as pypoll_results:
+pypoll_results_path = os.path.join(dir_path, 'SPR_election_results.txt')
+with open(pypoll_results_path,'w') as pypoll_results:
 #newline
     print('\n\n')
     #actual answer
@@ -36,10 +37,10 @@ with open('SPR_election_results.txt','w') as pypoll_results:
     print('Total Votes: ' + str(total_votes))
     print('---------------------------------')
 
-    pypoll_results.write('Election Results\n')
-    pypoll_results.write('---------------------------------\n')
-    pypoll_results.write('Total Votes: ' + str(total_votes)+ '\n')
-    pypoll_results.write('---------------------------------\n')
+    pypoll_results.write('Election Results')
+    pypoll_results.write('\n---------------------------------\n')
+    pypoll_results.write('Total Votes: ' + str(total_votes))
+    pypoll_results.write('\n---------------------------------\n')
 
     #loop again
     for key in votes.keys():
@@ -52,13 +53,13 @@ with open('SPR_election_results.txt','w') as pypoll_results:
             str(votes[key]) +' votes')
 
         pypoll_results.write(str(key) + ': ' + "{0:.3f}%".format(percent) + ', ' +\
-            str(votes[key]) +' votes \n')
+            str(votes[key]) +' votes')
         
         win_votes.append(votes[key])
 
     print('---------------------------------')
 
-    pypoll_results.write('---------------------------------\n')
+    pypoll_results.write('\n---------------------------------\n')
     #compage max of votes to keys in dictionary
     for key, value in votes.items():
 
@@ -68,4 +69,4 @@ with open('SPR_election_results.txt','w') as pypoll_results:
             print('---------------------------------')
 
             pypoll_results.write(key + ' won the election!')
-            pypoll_results.write('\n---------------------------------')
+            pypoll_results.write('\n---------------------------------\n')

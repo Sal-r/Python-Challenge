@@ -4,7 +4,7 @@ import numpy as np
 
 #file path
 dir_path = os.path.dirname(os.path.realpath(__file__))
-pypoll_data_path = os.path.join(dir_path, 'budget_data.csv')
+pybank_data_path = os.path.join(dir_path, 'budget_data.csv')
 
 #make dictionarys & lists
 trade_months = []
@@ -13,7 +13,7 @@ trade_diff = []
 total_value = 0
 
 #open file
-with open(pypoll_data_path, 'r') as pybank_data:
+with open(pybank_data_path, 'r') as pybank_data:
     csvreader = csv.reader(pybank_data, delimiter=',')
 
     #loop and count
